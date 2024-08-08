@@ -35,7 +35,7 @@ function YearList() {
             <ListboxOption
               key={year.year}
               value={year}
-              className="group w-full relative cursor-pointer select-none py-2 pl-3 pr-3 text-black data-[focus]:bg-slate-800 data-[focus]:text-white"
+              className="group w-full relative cursor-pointer select-none py-2 pl-0 pr-3 text-black data-[focus]:bg-slate-800 data-[focus]:text-white"
             >
               <span className="flex items-center w-full justify-center">
                 {year.year}
