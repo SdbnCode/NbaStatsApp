@@ -11,7 +11,7 @@ const API = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=LeBron&season=2023&sortBy=PlayerName&ascending=true&pageNumber=1&pageSize=10"
+          "http://b8c40s8.143.198.70.30.sslip.io/api/"
         );
         if (!response.ok) {
           throw new Error(`Error status: ${response.status}`);

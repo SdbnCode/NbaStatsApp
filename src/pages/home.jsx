@@ -31,6 +31,12 @@ class Home extends React.Component {
                 Enter your favorite player's name and season to compare their
                 and find out who is the greatest of all time.
               </p>
+              <button
+                type="button"
+                class="bg-slate-950 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
+              >
+                <NavLink to="/compareplayer">Get Started</NavLink>
+              </button>
             </div>
           </div>
         </div>

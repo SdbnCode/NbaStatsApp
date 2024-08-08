@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import "./index.css";
 import API from "./component/api";
 import ComparePlayer from "./pages/compareplayer";
+// import About from "./pages/about";
 
 function App() {
   return (
@@ -12,8 +13,11 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="./pages/home" element={<Home />} />
-          <Route path="./pages/compareplayers" element={<API />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/compareplayer" element={<ComparePlayer />} />
+          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/api" element={<API />} />
         </Routes>
       </BrowserRouter>
     </div>

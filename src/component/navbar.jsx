@@ -69,7 +69,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
+    <header className="bg-blue-500">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -92,19 +92,19 @@ export default function Navbar() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
-            href="#home"
+            href="/home"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Home
           </a>
           <a
-            href="#api"
+            href="/compareplayer"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Compare Players
           </a>
           <a
-            href="#home"
+            href="/about"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             About
