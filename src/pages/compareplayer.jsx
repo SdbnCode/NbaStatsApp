@@ -2,40 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import API from "../component/api";
 import YearList from "../component/yearList";
-
+import SearchBar from "../component/searchbar";
 class ComparePlayer extends React.Component {
   render() {
     return (
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex justify-center gap-4 py-4 w-auto">
-          <div>
-            <input
-              id=""
-              name="player"
-              type="name"
-              required
-              autoComplete="name"
-              placeholder="player name"
-              className="block w-auto rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
-            />
-            <div className="flex justify-center gap-4 py-4 w-auto">
-              <YearList />
-            </div>
-          </div>
-          <div>
-            <input
-              id=""
-              name="player"
-              type="name"
-              required
-              autoComplete="name"
-              placeholder="player name"
-              className="block w-auto rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
-            />
-            <div className="flex justify-center gap-4 py-4 w-auto">
-              <YearList />
-            </div>
-          </div>
+          <SearchBar />
+          <SearchBar />
         </div>
 
         <div className="flex justify-center">

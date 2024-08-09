@@ -29,7 +29,7 @@ class Home extends React.Component {
               </h2>
               <p class="mt-4 text-base leading-relaxed text-gray-600">
                 Enter your favorite player's name and season to compare their
-                and find out who is the greatest of all time.
+                highest peaks and find out who is the greatest of all time.
               </p>
               <button
                 type="button"
