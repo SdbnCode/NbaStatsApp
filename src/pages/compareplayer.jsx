@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import API from "../component/api";
-import YearList from "../component/yearList";
 import SearchBar from "../component/searchbar";
+// import SearchButton from "../component/search";
+// import { Chart } from "chart.js/auto";
+// import { Bar } from "react-chartjs-2";
 class ComparePlayer extends React.Component {
   render() {
     return (
@@ -14,6 +14,8 @@ class ComparePlayer extends React.Component {
         <p className="text-center mt-10">
           Currently our data is only accurate between the years of 1993 to 2024
         </p>
+        {/* <Bar data={data} />
+         */}
       </div>
     );
   }

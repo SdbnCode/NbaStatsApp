@@ -1,37 +1,22 @@
 import React, { useState } from "react";
 import YearList from "../component/yearList";
+import SearchButton from "./searchButton";
+import fetchData from "./fetchdata";
 
 export const SearchBar = () => {
   const [input, setInput] = useState("");
   const [year, setYear] = useState("");
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const fetchData = async () => {
-    setLoading(true);
-    setError(null);
+  const { data, loading, error, setUrl } = fetchData("");
 
-    try {
-      const response = await fetch(
-        `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${input}&season=${year}`
-      );
-      if (!response.ok) {
-        throw new Error(`Error status: ${response.status}`);
-      }
-      const result = await response.json();
-      setData(result);
-      console.log(response);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+  //Set the url to the api
+  const handleSearch = () => {
+    const url = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${input}&season=${year}`;
+    setUrl(url);
   };
-
   return (
     <div>
-      <div className="my-5">
+      <div className="my-4">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -42,14 +27,10 @@ export const SearchBar = () => {
         />
         <YearList setYear={setYear} />
       </div>
-      <button
-        onClick={fetchData}
-        className="block w-32 rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
-      >
-        Search
-      </button>
-
-      {data && (
+      <SearchButton onClick={handleSearch} />
+      {loading && <p>Loading...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
+      {data && data.length > 0 && (
         <div>
           <h1>Data</h1>
           <pre>{JSON.stringify(data, null, 2)}</pre>
