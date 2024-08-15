@@ -11,9 +11,13 @@ export const SearchBar = () => {
 
   //Set the url to the api
   const handleSearch = () => {
+    if (!input || !year) {
+      return alert("Please enter a player name and year");
+    }
     const url = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${input}&season=${year}`;
     setUrl(url);
   };
+
   return (
     <div>
       <div className="my-4">
@@ -30,11 +34,13 @@ export const SearchBar = () => {
       <SearchButton onClick={handleSearch} />
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">Error: {error}</p>}
-      {data && data.length > 0 && (
+      {data && data.length > 0 ? (
         <div>
           <h1>Data</h1>
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
+      ) : (
+        <div></div>
       )}
     </div>
   );
