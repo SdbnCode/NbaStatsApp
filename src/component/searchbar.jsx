@@ -33,14 +33,12 @@ export const SearchBar = () => {
       </div>
       <SearchButton onClick={handleSearch} />
       {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
-      {data && data.length > 0 ? (
+      {!loading && error && <p className="text-red-500">Error: {error}</p>}
+      {!loading && !error && data && data.length > 0 && (
         <div>
           <h1>Data</h1>
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
-      ) : (
-        <div></div>
       )}
     </div>
   );
