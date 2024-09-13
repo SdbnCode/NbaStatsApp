@@ -9,8 +9,8 @@ import About from "./pages/about";
 function App() {
   return (
     <div>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
