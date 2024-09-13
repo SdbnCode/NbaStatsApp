@@ -1,32 +1,8 @@
-"use client";
-
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from "@headlessui/react";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
+import { Dialog, Disclosure, Popover } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,7 +33,7 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+        <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <a
             href="/home"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -76,7 +52,7 @@ export default function Navbar() {
           >
             About
           </a>
-        </PopoverGroup>
+        </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
             href="https://sdbncode.github.io/SdbnCode/"
@@ -92,7 +68,7 @@ export default function Navbar() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Find Your GOAT</span>
@@ -139,7 +115,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </DialogPanel>
+        </Dialog.Panel>
       </Dialog>
     </header>
   );
