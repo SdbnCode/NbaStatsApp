@@ -82,7 +82,7 @@ const BarChart = ({ data1, data2 }) => {
     "Field Goals",
     "Free Throws",
   ];
-
+  // Values for the first player
   const chartValues1 = [
     totalStats1.points,
     totalStats1.assists,
@@ -93,17 +93,16 @@ const BarChart = ({ data1, data2 }) => {
     totalStats1.ft,
   ];
 
-  const chartValues2 = totalStats2
-    ? [
-        totalStats2.points,
-        totalStats2.assists,
-        totalStats2.totalRb,
-        totalStats2.steals,
-        totalStats2.blocks,
-        totalStats2.fieldGoals,
-        totalStats2.ft,
-      ]
-    : [];
+  // Values for the second player
+  const chartValues2 = [
+    totalStats2.points,
+    totalStats2.assists,
+    totalStats2.totalRb,
+    totalStats2.steals,
+    totalStats2.blocks,
+    totalStats2.fieldGoals,
+    totalStats2.ft,
+  ];
 
   // Make the first dataset negative to extend bars to the left
   const negativeChartValues = chartValues1.map((value) => -value);
@@ -140,9 +139,10 @@ const BarChart = ({ data1, data2 }) => {
     scales: {
       x: {
         beginAtZero: true,
+        // Allows for even scaling of the bars
         suggestedMin: -maxValue,
         suggestedMax: maxValue,
-        // Adjust the ticks to display positive values
+        // Have the ticks return positive values
         ticks: {
           callback: function (value, index, values) {
             return Math.abs(value);
@@ -157,7 +157,7 @@ const BarChart = ({ data1, data2 }) => {
       },
     },
     plugins: {
-      // Adjust tooltips to display positive values
+      // Adjust tooltips to display positive values like chart
       tooltip: {
         callbacks: {
           label: function (context) {
@@ -175,7 +175,7 @@ const BarChart = ({ data1, data2 }) => {
       },
       title: {
         display: true,
-        text: `Player Comparison - ${data1[0].season} Season`,
+        text: ` ${data1[0].playerName} ${data1[0].season} vs. ${data2[0].playerName} ${data2[0].season}`,
       },
     },
   };
