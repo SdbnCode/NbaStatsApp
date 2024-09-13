@@ -32,12 +32,12 @@ export const SearchBar = () => {
     }
 
     //Set the url for player 1
-    const url = `https://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer1}&season=${yearPlayer1}`;
+    const url = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer1}&season=${yearPlayer1}`;
     setUrl1(url);
 
     //Set the url for player 2
     if (inputPlayer2) {
-      const url2 = `https://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer2}&season=${yearPlayer2}`;
+      const url2 = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer2}&season=${yearPlayer2}`;
       setUrl2(url2);
     }
   };
