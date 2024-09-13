@@ -44,30 +44,36 @@ export const SearchBar = () => {
 
   return (
     <div className="p-2">
-      <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input
-          value={inputPlayer1}
-          onChange={(e) => setInputPlayer1(e.target.value)}
-          required
-          autoComplete="name"
-          placeholder="Search..."
-          className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
-        />
-        <input
-          value={inputPlayer2}
-          onChange={(e) => setInputPlayer2(e.target.value)}
-          required
-          autoComplete="name"
-          placeholder="Search..."
-          className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
-        />
-        <YearList setYear={setYearPlayer1} />
-        <YearList setYear={setYearPlayer2} />
-      </div>
+      <form>
+        <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="player1"
+            value={inputPlayer1}
+            onChange={(e) => setInputPlayer1(e.target.value)}
+            required
+            autoComplete="on"
+            placeholder="Search..."
+            className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
+          />
+          <input
+            type="text"
+            name="player2"
+            value={inputPlayer2}
+            onChange={(e) => setInputPlayer2(e.target.value)}
+            required
+            autoComplete="on"
+            placeholder="Search..."
+            className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
+          />
+          <YearList setYear={setYearPlayer1} />
+          <YearList setYear={setYearPlayer2} />
+        </div>
 
-      <div className="flex justify-center">
-        <SearchButton onClick={handleSearch} />
-      </div>
+        <div className="flex justify-center">
+          <SearchButton onClick={handleSearch} />
+        </div>
+      </form>
 
       {(loading1 || loading2) && <p>Loading...</p>}
       {!loading1 && error1 && <p className="text-red-500">{error1}</p>}

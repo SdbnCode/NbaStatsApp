@@ -107,7 +107,7 @@ const BarChart = ({ data1, data2 }) => {
   // Make the first dataset negative to extend bars to the left
   const negativeChartValues = chartValues1.map((value) => -value);
 
-  // Calculate the maximum value to adjust the ticks and tooltips
+  // Calculate the maximum value to adjust the ticks and tooltips for chart
   const allValues = [...chartValues1, ...chartValues2];
   const maxValue = Math.max(...allValues);
 
