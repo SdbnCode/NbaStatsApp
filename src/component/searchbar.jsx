@@ -28,6 +28,7 @@ export const SearchBar = () => {
     if (!inputPlayer1 || !inputPlayer2 || !year) {
       return alert("Please enter a player name and year");
     }
+
     //Set the url for player 1
     const url = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer1}&season=${year}`;
     setUrl1(url);

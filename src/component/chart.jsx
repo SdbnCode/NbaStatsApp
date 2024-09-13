@@ -20,11 +20,12 @@ ChartJS.register(
 );
 
 const BarChart = ({ data1, data2 }) => {
-  if (!data1 || !data2 || !data1.length || !data2.length) {
+  if (!data1 || data1.length === 0) {
     return null;
   }
-  //Combine the data for the first player if they played on multiple teams
-  const totalStatsPlayer1 = data1.reduce(
+
+  //Calculate the stats for the first player if they played on multiple teams
+  const totalStats1 = data1.reduce(
     (acc, item) => {
       acc.points += item.points;
       acc.assists += item.assists;
@@ -46,7 +47,32 @@ const BarChart = ({ data1, data2 }) => {
     }
   );
 
-  //Set the labels for the chart
+  // Calculate the stats for the second player if they played on multiple teams
+  const totalStats2 = data2
+    ? data2.reduce(
+        (acc, item) => {
+          acc.points += item.points;
+          acc.assists += item.assists;
+          acc.totalRb += item.totalRb;
+          acc.steals += item.steals;
+          acc.blocks += item.blocks;
+          acc.fieldGoals += item.fieldGoals;
+          acc.ft += item.ft;
+          return acc;
+        },
+        {
+          points: 0,
+          assists: 0,
+          totalRb: 0,
+          steals: 0,
+          blocks: 0,
+          fieldGoals: 0,
+          ft: 0,
+        }
+      )
+    : null;
+
+  // Create labels and values for the chart
   const chartLabels = [
     "Points",
     "Assists",
@@ -57,98 +83,105 @@ const BarChart = ({ data1, data2 }) => {
     "Free Throws",
   ];
 
-  //Set the chart values for player 1's stats
-  const chartValuesPlayer1 = [
-    totalStatsPlayer1.points,
-    totalStatsPlayer1.assists,
-    totalStatsPlayer1.totalRb,
-    totalStatsPlayer1.steals,
-    totalStatsPlayer1.blocks,
-    totalStatsPlayer1.fieldGoals,
-    totalStatsPlayer1.ft,
-    totalStatsPlayer1.playerName,
-    totalStatsPlayer1.season,
+  const chartValues1 = [
+    totalStats1.points,
+    totalStats1.assists,
+    totalStats1.totalRb,
+    totalStats1.steals,
+    totalStats1.blocks,
+    totalStats1.fieldGoals,
+    totalStats1.ft,
   ];
 
-  //Combine the data for the second player if they played on multiple teams
-  const totalStatsPlayer2 = data2.reduce(
-    (acc, item) => {
-      acc.points += item.points;
-      acc.assists += item.assists;
-      acc.totalRb += item.totalRb;
-      acc.steals += item.steals;
-      acc.blocks += item.blocks;
-      acc.fieldGoals += item.fieldGoals;
-      acc.ft += item.ft;
-      return acc;
-    },
-    {
-      points: 0,
-      assists: 0,
-      totalRb: 0,
-      steals: 0,
-      blocks: 0,
-      fieldGoals: 0,
-      ft: 0,
-    }
-  );
+  const chartValues2 = totalStats2
+    ? [
+        totalStats2.points,
+        totalStats2.assists,
+        totalStats2.totalRb,
+        totalStats2.steals,
+        totalStats2.blocks,
+        totalStats2.fieldGoals,
+        totalStats2.ft,
+      ]
+    : [];
 
-  const chartValuesPlayer2 = [
-    totalStatsPlayer2.points,
-    totalStatsPlayer2.assists,
-    totalStatsPlayer2.totalRb,
-    totalStatsPlayer2.steals,
-    totalStatsPlayer2.blocks,
-    totalStatsPlayer2.fieldGoals,
-    totalStatsPlayer2.ft,
-    totalStatsPlayer2.playerName,
-    totalStatsPlayer2.season,
-  ];
+  // Make the first dataset negative to extend bars to the left
+  const negativeChartValues = chartValues1.map((value) => -value);
+
+  // Calculate the maximum value to adjust the ticks and tooltips
+  const allValues = [...chartValues1, ...chartValues2];
+  const maxValue = Math.max(...allValues);
 
   const chart = {
+    type: "bar",
     labels: chartLabels,
     datasets: [
       {
         label: `${data1[0].playerName}`,
-        data: chartValuesPlayer1,
+        data: negativeChartValues,
         borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
-      {
+      data2 && {
         label: `${data2[0].playerName}`,
-        data: chartValuesPlayer2,
+        data: chartValues2,
         borderColor: "rgba(54, 162, 235, 1)",
         backgroundColor: "rgba(54, 162, 235, 0.5)",
+        borderWidth: 1,
       },
     ],
   };
 
   const chartOptions = {
     indexAxis: "y",
-    elements: {
-      bar: {
-        borderWidth: 2,
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        beginAtZero: true,
+        suggestedMin: -maxValue,
+        suggestedMax: maxValue,
+        // Adjust the ticks to display positive values
+        ticks: {
+          callback: function (value, index, values) {
+            return Math.abs(value);
+          },
+        },
+      },
+      y: {
+        beginAtZero: true,
+        stacked: true,
+        categoryPercentage: 1.0,
+        barPercentage: 1.0,
       },
     },
-    responsive: true,
     plugins: {
+      // Adjust tooltips to display positive values
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            let label = context.dataset.label || "";
+            if (label) {
+              label += ": ";
+            }
+            label += Math.abs(context.parsed.x);
+            return label;
+          },
+        },
+      },
       legend: {
-        position: "right",
+        position: "top",
       },
       title: {
         display: true,
-        text: `${data1[0].playerName} - ${data1[0].season} Season Stats vs ${data2[0].playerName} - ${data2[0].season} Season Stats`,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
+        text: `Player Comparison - ${data1[0].season} Season`,
       },
     },
   };
 
   return (
-    <div>
+    <div style={{ height: "300px", width: "100%" }}>
       <Bar data={chart} options={chartOptions} />
     </div>
   );
