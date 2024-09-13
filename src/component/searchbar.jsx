@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import YearList from "../component/yearList";
 import SearchButton from "./searchButton";
-import fetchData from "./fetchdata";
+import useFetchData from "./fetchdata";
+import BarChart from "../component/chart";
 
 export const SearchBar = () => {
   const [input, setInput] = useState("");
   const [year, setYear] = useState("");
 
-  const { data, loading, error, setUrl } = fetchData("");
+  const { data, loading, error, setUrl } = useFetchData("");
 
-  //Set the url to the api
+  // Set the URL to the API endpoint being the player name and year
   const handleSearch = () => {
     if (!input || !year) {
       return alert("Please enter a player name and year");
@@ -33,11 +34,10 @@ export const SearchBar = () => {
       </div>
       <SearchButton onClick={handleSearch} />
       {loading && <p>Loading...</p>}
-      {!loading && error && <p className="text-red-500">Error: {error}</p>}
+      {!loading && error && <p className="text-red-500">{error}</p>}
       {!loading && !error && data && data.length > 0 && (
         <div>
-          <h1>Data</h1>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <BarChart data={data} />
         </div>
       )}
     </div>
