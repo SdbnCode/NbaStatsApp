@@ -53,7 +53,7 @@ export const SearchBar = () => {
             onChange={(e) => setInputPlayer1(e.target.value)}
             required
             autoComplete="on"
-            placeholder="Search..."
+            placeholder="Enter a Name"
             className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
           />
           <input
@@ -63,17 +63,17 @@ export const SearchBar = () => {
             onChange={(e) => setInputPlayer2(e.target.value)}
             required
             autoComplete="on"
-            placeholder="Search..."
+            placeholder="Enter a Name"
             className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
           />
           <YearList setYear={setYearPlayer1} />
           <YearList setYear={setYearPlayer2} />
         </div>
-
-        <div className="flex justify-center">
-          <SearchButton onClick={handleSearch} />
-        </div>
       </form>
+
+      <div className="flex justify-center">
+        <SearchButton onClick={handleSearch} />
+      </div>
 
       {(loading1 || loading2) && <p>Loading...</p>}
       {!loading1 && error1 && <p className="text-red-500">{error1}</p>}

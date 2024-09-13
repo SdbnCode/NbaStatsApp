@@ -4,9 +4,7 @@ import Navbar from "./component/navbar";
 import Home from "./pages/home";
 import "./index.css";
 import ComparePlayer from "./pages/compareplayer";
-// import { Chart } from "chart.js/auto";
-// import { Bar } from "react-chartjs-2";
-// import About from "./pages/about";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -17,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/compareplayer" element={<ComparePlayer />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>

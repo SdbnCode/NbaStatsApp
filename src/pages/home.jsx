@@ -5,7 +5,7 @@ class Home extends React.Component {
   render() {
     return (
       <section class="py-10 bg-white sm:py-16 lg:py-24">
-        <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
           <div class="grid items-center md:grid-cols-2 gap-y-10 md:gap-x-20">
             <div class="pr-12 sm:pr-0">
               <div class="relative max-w-xs mb-12">
@@ -23,17 +23,18 @@ class Home extends React.Component {
               </div>
             </div>
 
-            <div>
-              <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+            <div className="p-4">
+              <h2 class="py-2 text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
                 Find Your GOAT
               </h2>
-              <p class="mt-4 text-base leading-relaxed text-gray-600">
+              <p class="py-4 text-base leading-relaxed text-gray-600">
                 Enter your favorite player's name and season to compare their
                 highest peaks and find out who is the greatest of all time.
               </p>
+
               <button
                 type="button"
-                class="bg-slate-950 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
+                class=" bg-slate-950 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
               >
                 <NavLink to="/compareplayer">Get Started</NavLink>
               </button>
