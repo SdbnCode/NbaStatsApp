@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Dialog, Disclosure, Popover } from "@headlessui/react";
+import { Dialog, Disclosure, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
@@ -32,7 +32,7 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
+        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Link
             to="/home"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -46,7 +46,7 @@ export default function Navbar() {
           >
             About
           </Link>
-        </Popover.Group>
+        </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
             href="https://sdbncode.github.io/SdbnCode/"
@@ -62,7 +62,7 @@ export default function Navbar() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Find Your GOAT</span>
@@ -106,7 +106,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </Dialog.Panel>
+        </Dialog>
       </Dialog>
     </header>
   );
