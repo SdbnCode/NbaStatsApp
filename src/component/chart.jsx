@@ -24,50 +24,73 @@ const BarChart = ({ data1, data2 }) => {
     return null;
   }
 
-  //Calculate the stats for the first player if they played on multiple teams
-  const totalStats1 = data1.reduce(
+  //Extract playerTotals array from data1
+  const playerTotals1 = Array.isArray(data1?.playerTotals)
+    ? data1.playerTotals
+    : [];
+
+  if (playerTotals1.length === 0) {
+    return null;
+  }
+
+  console.log(playerTotals1);
+
+  //Calculate total stats for player 1
+  const totalStats1 = playerTotals1.reduce(
     (acc, item) => {
       acc.points += item.points;
       acc.assists += item.assists;
       acc.totalRb += item.totalRb;
+      acc.fieldGoals += item.fieldGoals;
+      acc.threeFg += item.threeFg;
+      acc.ft += item.ft;
+      acc.turnovers += item.turnovers;
       acc.steals += item.steals;
       acc.blocks += item.blocks;
-      acc.fieldGoals += item.fieldGoals;
-      acc.ft += item.ft;
       return acc;
     },
     {
       points: 0,
       assists: 0,
       totalRb: 0,
+      fieldGoals: 0,
+      threeFg: 0,
+      ft: 0,
+      turnovers: 0,
       steals: 0,
       blocks: 0,
-      fieldGoals: 0,
-      ft: 0,
     }
   );
 
-  // Calculate the stats for the second player if they played on multiple teams
-  const totalStats2 = data2
-    ? data2.reduce(
+  // Safely extract playerTotals array from data2 if it exists
+  const playerTotals2 = Array.isArray(data2?.playerTotals)
+    ? data2.playerTotals
+    : [];
+
+  const totalStats2 = playerTotals2.length
+    ? playerTotals2.reduce(
         (acc, item) => {
           acc.points += item.points;
           acc.assists += item.assists;
           acc.totalRb += item.totalRb;
+          acc.fieldGoals += item.fieldGoals;
+          acc.threeFg += item.threeFg;
+          acc.ft += item.ft;
+          acc.turnovers += item.turnovers;
           acc.steals += item.steals;
           acc.blocks += item.blocks;
-          acc.fieldGoals += item.fieldGoals;
-          acc.ft += item.ft;
           return acc;
         },
         {
           points: 0,
           assists: 0,
           totalRb: 0,
+          fieldGoals: 0,
+          threeFg: 0,
+          ft: 0,
+          turnovers: 0,
           steals: 0,
           blocks: 0,
-          fieldGoals: 0,
-          ft: 0,
         }
       )
     : null;
@@ -77,37 +100,43 @@ const BarChart = ({ data1, data2 }) => {
     "Points",
     "Assists",
     "Rebounds",
+    "Field Goals",
+    "Three-Pointers",
+    "Free Throws",
+    "Turnovers",
     "Steals",
     "Blocks",
-    "Field Goals",
-    "Free Throws",
   ];
-  // Values for the first player
+
+  // Values for player 1
   const chartValues1 = [
     totalStats1.points,
     totalStats1.assists,
     totalStats1.totalRb,
+    totalStats1.fieldGoals,
+    totalStats1.threeFg,
+    totalStats1.ft,
+    totalStats1.turnovers,
     totalStats1.steals,
     totalStats1.blocks,
-    totalStats1.fieldGoals,
-    totalStats1.ft,
   ];
 
-  // Values for the second player
-  const chartValues2 = [
-    totalStats2.points,
-    totalStats2.assists,
-    totalStats2.totalRb,
-    totalStats2.steals,
-    totalStats2.blocks,
-    totalStats2.fieldGoals,
-    totalStats2.ft,
-  ];
+  // Values for player 2
+  const chartValues2 = totalStats2
+    ? [
+        totalStats2.points,
+        totalStats2.assists,
+        totalStats2.totalRb,
+        totalStats2.fieldGoals,
+        totalStats2.threeFg,
+        totalStats2.ft,
+        totalStats2.turnovers,
+        totalStats2.steals,
+        totalStats2.blocks,
+      ]
+    : [];
 
-  // Make the first dataset negative to extend bars to the left
   const negativeChartValues = chartValues1.map((value) => -value);
-
-  // Calculate the maximum value to adjust the ticks and tooltips for chart
   const allValues = [...chartValues1, ...chartValues2];
   const maxValue = Math.max(...allValues);
 
@@ -116,14 +145,14 @@ const BarChart = ({ data1, data2 }) => {
     labels: chartLabels,
     datasets: [
       {
-        label: `${data1[0].playerName}`,
+        label: `${data1.playerTotals[0]?.playerName}`,
         data: negativeChartValues,
         borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         borderWidth: 1,
       },
       data2 && {
-        label: `${data2[0].playerName}`,
+        label: `${data2?.playerTotals[0]?.playerName}`,
         data: chartValues2,
         borderColor: "rgba(54, 162, 235, 1)",
         backgroundColor: "rgba(54, 162, 235, 0.5)",
@@ -175,7 +204,7 @@ const BarChart = ({ data1, data2 }) => {
       },
       title: {
         display: true,
-        text: ` ${data1[0].playerName} ${data1[0].season} vs. ${data2[0].playerName} ${data2[0].season}`,
+        text: `${data1?.playerTotals?.[0]?.playerName} vs. ${data2?.playerTotals?.[0]?.playerName}`,
       },
     },
   };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import YearList from "../component/yearList";
+// import YearList from "../component/yearList";
 import SearchButton from "./searchButton";
 import useFetchData from "./fetchdata";
 import BarChart from "../component/chart";
@@ -7,39 +7,77 @@ import BarChart from "../component/chart";
 export const SearchBar = () => {
   const [inputPlayer1, setInputPlayer1] = useState("");
   const [inputPlayer2, setInputPlayer2] = useState("");
-  const [yearPlayer1, setYearPlayer1] = useState("");
-  const [yearPlayer2, setYearPlayer2] = useState("");
+  // const [yearPlayer1, setYearPlayer1] = useState("");
+  // const [yearPlayer2, setYearPlayer2] = useState("");
 
   const {
     data: data1,
     loading: loading1,
     error: error1,
-    setUrl: setUrl1,
+    setQuery: setQuery1,
   } = useFetchData("");
 
   const {
     data: data2,
     loading: loading2,
     error: error2,
-    setUrl: setUrl2,
+    setQuery: setQuery2,
   } = useFetchData("");
 
-  // Set the URL to the API endpoint being the players name and year
+  const buildGraphQLQuery = (playerName) => {
+    return `
+      query {
+        playerTotals(name: "${playerName}") {
+          id
+          playerName
+          position
+          age
+          games
+          gamesStarted
+          minutesPg
+          fieldGoals
+          fieldAttempts
+          fieldPercent
+          threeFg
+          threeAttempts
+          threePercent
+          twoFg
+          twoAttempts
+          twoPercent
+          effectFgPercent
+          ft
+          ftAttempts
+          ftPercent
+          offensiveRb
+          defensiveRb
+          totalRb
+          assists
+          steals
+          blocks
+          turnovers
+          personalFouls
+          points
+          team
+          season
+          playerId
+        }
+      }
+    `;
+  };
+
+  // Setting the query and fetching player stats
   const handleSearch = () => {
     //If there is no name search or year search, alert the user
-    if (!inputPlayer1 || !inputPlayer2 || !yearPlayer1 || !yearPlayer2) {
-      return alert("Please enter a player name and year");
+    if (!inputPlayer1 || !inputPlayer2) {
+      return alert("Please enter a player name");
     }
 
-    //Set the url for player 1
-    const url = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer1}&season=${yearPlayer1}`;
-    setUrl1(url);
+    //Set the query for the players
+    const query1 = buildGraphQLQuery(inputPlayer1);
+    const query2 = buildGraphQLQuery(inputPlayer2);
 
-    //Set the url for player 2
-    if (inputPlayer2) {
-      const url2 = `http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?playerName=${inputPlayer2}&season=${yearPlayer2}`;
-      setUrl2(url2);
-    }
+    setQuery1(query1);
+    setQuery2(query2);
   };
 
   return (
@@ -66,8 +104,8 @@ export const SearchBar = () => {
             placeholder="Enter a Name"
             className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
           />
-          <YearList setYear={setYearPlayer1} />
-          <YearList setYear={setYearPlayer2} />
+          {/* <YearList setYear={setYearPlayer1} />
+          <YearList setYear={setYearPlayer2} /> */}
         </div>
       </form>
 
