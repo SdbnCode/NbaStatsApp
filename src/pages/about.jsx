@@ -39,7 +39,17 @@ class About extends React.Component {
             >
               NBA GraphQL API website
             </a>
-            .
+            <p className="text-lg text-gray-700 mb-4">
+              The project code can be found here on my{" "}
+              <a
+                className="font-bold text-blue-700 hover:text-blue-900 hover:underline"
+                href="https://github.com/SdbnCode/NbaStatsApp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub page
+              </a>
+            </p>
           </p>
         </div>
       </div>
