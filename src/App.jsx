@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, Router } from "react-router-dom";
 import Navbar from "./component/navbar";
 import Home from "./pages/home";
 import "./index.css";
-import ComparePlayer from "./pages/compareplayer";
 import About from "./pages/about";
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/compareplayer" element={<ComparePlayer />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>

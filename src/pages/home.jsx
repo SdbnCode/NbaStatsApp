@@ -5,9 +5,9 @@ import { NavLink } from "react-router-dom";
 class Home extends React.Component {
   render() {
     return (
-      <section className="py-10 bg-white sm:py-16 lg:py-24">
+      <section className="py-16 bg-gray-50 min-h-screen">
         <div className="max-w-5xl gap mx-auto sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid items-center md:grid-cols-2 gap-y-10 md:gap-x-20">
               <div className="pr-12 sm:pr-0">
                 <div className="relative max-w-xs mb-12">
@@ -25,11 +25,11 @@ class Home extends React.Component {
                 </div>
               </div>
 
-              <div className="p-6">
-                <h2 className="py-2 text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+              <div className="p-8">
+                <h2 className="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
                   Find Your GOAT
                 </h2>
-                <p className="py-4 text-base leading-relaxed text-gray-600">
+                <p className="mt-6 text-lg leading-relaxed text-gray-600">
                   Enter your favorite player's name to compare their overall
                   stats and find out who is truly the greatest of all time.
                 </p>
@@ -37,14 +37,14 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className=" mx-auto mt-20 max-w-7xl px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+          <div className=" mx-auto mt-20 max-w-7xl px-6 lg:px-8mt-24 text-center">
+            <h2 className="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
               Compare Players
             </h2>
-            <div className=" flex justify-center gap-8 mt-10">
+            <div className=" flex justify-center mt-12">
               <SearchBar />
             </div>
-            <p className="text-center mt-10">
+            <p className="mt-8 text-lg text-gray-600">
               Currently our data is only accurate between the years of 1993 to
               2024
             </p>
