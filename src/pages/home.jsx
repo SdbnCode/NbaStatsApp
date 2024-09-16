@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "../component/searchbar";
 import { NavLink } from "react-router-dom";
 
 class Home extends React.Component {
@@ -28,8 +29,8 @@ class Home extends React.Component {
                 Find Your GOAT
               </h2>
               <p className="py-4 text-base leading-relaxed text-gray-600">
-                Enter your favorite player's name and season to compare their
-                highest peaks and find out who is the greatest of all time.
+                Enter your favorite player's name to compare their overall stats
+                and find out who is truly the greatest of all time.
               </p>
 
               <button
@@ -40,6 +41,15 @@ class Home extends React.Component {
               </button>
             </div>
           </div>
+        </div>
+        <div className=" mx-auto max-w-7xl px-6 lg:px-8">
+          <div className=" flex justify-center gap-8 mt-10">
+            <SearchBar />
+          </div>
+          <p className="text-center mt-10">
+            Currently our data is only accurate between the years of 1993 to
+            2024
+          </p>
         </div>
       </section>
     );

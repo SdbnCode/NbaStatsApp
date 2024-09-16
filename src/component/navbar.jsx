@@ -39,12 +39,7 @@ export default function Navbar() {
           >
             Home
           </Link>
-          <Link
-            to="/compareplayer"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Compare Players
-          </Link>
+
           <Link
             to="/about"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -92,13 +87,7 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
-                <Link
-                  to="/compareplayer"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Compare Players
-                </Link>
+
                 <Link
                   to="/about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
