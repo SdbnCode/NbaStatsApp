@@ -117,7 +117,7 @@ export const SearchBar = () => {
       {!loading1 && error1 && <p className="text-red-500">{error1}</p>}
       {!loading2 && error2 && <p className="text-red-500">{error2}</p>}
       {!loading1 && !loading2 && !error1 && !error2 && data1 && (
-        <div className="mt-6">
+        <div className="mt-6 ">
           <BarChart data1={data1} data2={data2} />
         </div>
       )}

@@ -47,6 +47,7 @@ const BarChart = ({ data1, data2 }) => {
       acc.turnovers += item.turnovers;
       acc.steals += item.steals;
       acc.blocks += item.blocks;
+      acc.games += item.games;
       return acc;
     },
     {
@@ -59,6 +60,7 @@ const BarChart = ({ data1, data2 }) => {
       turnovers: 0,
       steals: 0,
       blocks: 0,
+      games: 0,
     }
   );
 
@@ -79,6 +81,7 @@ const BarChart = ({ data1, data2 }) => {
           acc.turnovers += item.turnovers;
           acc.steals += item.steals;
           acc.blocks += item.blocks;
+          acc.games += item.games;
           return acc;
         },
         {
@@ -91,6 +94,7 @@ const BarChart = ({ data1, data2 }) => {
           turnovers: 0,
           steals: 0,
           blocks: 0,
+          games: 0,
         }
       )
     : null;
@@ -106,6 +110,7 @@ const BarChart = ({ data1, data2 }) => {
     "Turnovers",
     "Steals",
     "Blocks",
+    "Games",
   ];
 
   // Values for player 1
@@ -119,6 +124,7 @@ const BarChart = ({ data1, data2 }) => {
     totalStats1.turnovers,
     totalStats1.steals,
     totalStats1.blocks,
+    totalStats1.games,
   ];
 
   // Values for player 2
@@ -133,6 +139,7 @@ const BarChart = ({ data1, data2 }) => {
         totalStats2.turnovers,
         totalStats2.steals,
         totalStats2.blocks,
+        totalStats2.games,
       ]
     : [];
 
@@ -210,7 +217,7 @@ const BarChart = ({ data1, data2 }) => {
   };
 
   return (
-    <div style={{ height: "300px", width: "100%" }}>
+    <div className="h-80 w-full">
       <Bar data={chart} options={chartOptions} />
     </div>
   );

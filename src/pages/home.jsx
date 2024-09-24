@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 class Home extends React.Component {
   render() {
     return (
-      <section className="py-16 bg-gray-50 min-h-screen">
+      <section className="py-2 bg-gray-50 min-h-screen">
         <div className="max-w-5xl gap mx-auto sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid items-center md:grid-cols-2 gap-y-10 md:gap-x-20">
